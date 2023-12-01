@@ -1,0 +1,41 @@
+* {
+    top: 0;
+    left: 0;
+    background-color: #bfc1c3;
+    color: #32424B;
+    font-family: 'Monomaniac One', sans-serif;}
+
+.title {
+    margin-top: 20px;
+    margin-bottom: -25px;
+    width: 100%;
+    text-align: center;
+    font-size: 130px;
+    text-decoration: underline;
+}
+
+.description {
+    text-align: center;
+    margin-bottom: 110px;
+    font-size: 20px;
+    letter-spacing: 0.7px;
+}
+
+form {
+    text-align: center;
+    width: 100%;
+}
+
+#inputLabel {
+    font-size: 30px;
+}
+
+#userInput {
+    width: 40%;;
+    height: 40px;
+    text-align: center;
+    background-color: rgb(230, 230, 230);
+    font-size: 20px;
+    border-radius: 10px;
+}
+

@@ -1,4 +1,4 @@
-import YOUR_TOKEN from "../secret";
+const YOUR_TOKEN = 'KEY_GO_HERE';
 
 // Track submission of TextField
 document.getElementById('userForm').addEventListener('submit', async function(e) {

@@ -39,3 +39,24 @@ form {
     border-radius: 10px;
 }
 
+/* Use these to modify flashcard appearnace */
+/* .flashwrapper {
+    justify-content: center;
+    align-items: center;
+    display: inline-flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+#flashcards {
+    border: 2px solid #32424B;
+    border-radius: 20px;
+    background-color: rgb(230, 230, 230);
+    width: 60%;
+
+    padding: 15px;
+    margin-top: 50px;
+
+    font-size: 32px;
+} */
+

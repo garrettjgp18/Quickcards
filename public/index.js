@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function() {
 
     // Put your key here
-    const YOUR_TOKEN = 'YOUR KEY';
+    const YOUR_TOKEN = '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';
 
     // Track submission of TextField
     document.getElementById('userForm').addEventListener('submit', async function(e) {
@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     "n": 1,
                     "stream": false,
                     "logprobs": null,
-                    "stop": "\n"
+    
                 })
             }).then(response => {
                 return response.json();
@@ -54,6 +54,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 console.log(Object.keys(data));
                 console.log(data['choices'][0]['message']['content']);
                 document.getElementById('flashcards').innerHTML = (data['choices'][0]['message']['content']);
+                
             }).catch(error => {
                 console.log('Something bad happened ' + error);
             });

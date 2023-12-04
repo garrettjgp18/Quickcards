@@ -71,7 +71,6 @@ form {
     margin-top: 50px;
     font-size: 32px;
     
-    
 }
 
 .card {
@@ -81,19 +80,28 @@ form {
     background-color: rgb(230, 230, 230);
     width: auto;
     height: 135px;
+    transition: background-color 60ms ease-in;
+    transition: border 60ms ease-in;
 }
 
 .card > h4{
-    background-color: rgb(230, 230, 230);
+    background-color: transparent;
     border-radius: 25px;
 }
 
 .card > p {
-    background-color: rgb(230, 230, 230);
+    background-color: transparent;
     border-radius: 25px;
     font-size: 27px;
     text-align: center;
     padding: 15px;
+    transition: color 60ms ease-in;
+}
+
+.card:hover{
+   border: 3px solid #2c6399;
+   background-color: #e1e1e1;
+
 }
 
 
@@ -117,5 +125,9 @@ form {
    .card > p {
     font-size: 15px;
     height: auto;
+   }
+
+   .card > h4 {
+    font-size: 25px;
    }
 }

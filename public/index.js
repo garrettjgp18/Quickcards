@@ -1,22 +1,26 @@
 document.addEventListener("DOMContentLoaded", function() {
 
     // Put your key here
-    const YOUR_TOKEN = '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';
+const YOUR_TOKEN = 'YOUR_KEY_HERE';
 
     // Track submission of TextField
     document.getElementById('userForm').addEventListener('submit', async function(e) {
         e.preventDefault();
 
+
+        // document.getElementById('alertMsg').innerHTML = "Generating flashcards. This may take a moment";
+
+
         // Sets videoURL to the input from the HTML field once the 'Enter' key is pressed
         let videoURL = document.getElementById('userInput').value;
 
         // Make sure input is tracked
-        console.log(videoURL);
+        console.log(`You chose ${videoURL}`);
 
         // Pass input into method
         function OpenaiFetchAPI(videoURL) {
             // Make sure method is called
-            console.log("Fetching API")
+            console.log("Generating now. Please wait")
             // Holds endpoint for API
             var url = "https://api.openai.com/v1/chat/completions"; // Change to the chat-based endpoint
             // Holds modification to API key so it can authenticate
@@ -33,76 +37,95 @@ document.addEventListener("DOMContentLoaded", function() {
                     "model": "gpt-3.5-turbo",
                     "messages": [{
                         "role": "system",
-                        "content": `You are a helpful assistant that creates flashcards from the schema ${videoURL}. Pick 10 keywords that deal with the schema and define them.`
+                        "content": `You are a helpful assistant that creates flashcards from the schema ${videoURL}. Define 10 keywords associated with the schema in 10 words
+                        or less. Return them as "keyword : definition"`
                     },{
                     "role": "user",
                     "content": `${videoURL}`
                     }
                 ],
-                    "temperature": 0.5, // Tempure adjust the answer ranges
+                    "temperature": 1, // Tempure adjust the answer ranges
                     "top_p": 1,
                     "n": 1,
-                    "stream": false,
-                    "logprobs": null,
-    
                 })
             }).then(response => {
                 return response.json();
             }).then(data => {
-                console.log(data);
-                console.log(typeof data);
-                console.log(Object.keys(data));
+                // Print the results to the console to make sure it works
                 console.log(data['choices'][0]['message']['content']);
-                document.getElementById('flashcards').innerHTML = (data['choices'][0]['message']['content']);
+                // document.getElementById('flashcards').innerHTML = (data['choices'][0]['message']['content']);
+                const reportData = String(data['choices'][0]['message']['content']);
+                // Splits the OpenAI results based on where a literal "." is, followed by numeric values. 
+                const pairs = reportData.split(/\d+\.\s/).filter(Boolean);
+
+                // Loops through the results of pairs (.split returns an array), and splits it again based on where each ':'
+                // is. 
+                for (const pair of pairs) {
+                    // Splits the left side into 'keyword', and the right into 'definition. 
+                    // map is a shorthand loop that trims each item, removing the unused whitespace
+                    const [keyword, definition] = pair.split(':').map(item => item.trim());
+                    // Check to ensure correct formatting
+                    console.log(keyword);
+                    console.log(definition);
+                    generateFlashcards(keyword, definition);
+                    // document.getElementById('alertMsg').style.display = 'none';
+                }
+
+
                 
+
+
             }).catch(error => {
-                console.log('Something bad happened ' + error);
+                console.log('An Error Occured: ' + error);
             });
         }
+
+
+        function generateFlashcards(keyword, definition) {
+            const container = document.getElementById('flashcards');
+        
+            const newCard = document.createElement('div');
+            newCard.classList.add('card');
+        
+            const frontSide = document.createElement('h4');
+            const backSide = document.createElement('p');
+        
+            // Set initial content
+            frontSide.textContent = keyword;
+            backSide.textContent = definition;
+        
+            newCard.appendChild(frontSide);
+            newCard.appendChild(backSide);
+        
+            newCard.classList.add('flashcards');
+        
+            // Use a data attribute to store the state of the card (keyword or description)
+            newCard.setAttribute('data-state', 'keyword');
+        
+            container.appendChild(newCard);
+            
+            backSide.style.display = 'none';
+
+            newCard.addEventListener('click', function(e) {
+                // Get the current state of the card
+                const currentState = newCard.getAttribute('data-state');
+                // Toggle between keyword and description
+                if (currentState === 'keyword') {
+                    frontSide.style.display = 'none';
+                    backSide.style.display = 'block';
+                    newCard.setAttribute('data-state', 'description');
+                } else {
+                    frontSide.style.display = 'block';
+                    backSide.style.display = 'none';
+                    newCard.setAttribute('data-state', 'keyword');
+                }
+            });
+        }
+        
+        
 
         // Run method
         OpenaiFetchAPI(videoURL);
     });
 
 });
-
-
-// This was the python code - try to mimic it
-
-// # Construct a single prompt containing all keywords
-// #     prompt = "\n".join(
-// #         [
-// #             f"Define the keyword '{keyword}' in the context of the schema: {summary}. Definitions cannot be more than 10 words"
-// #             for keyword in keywordArray
-// #         ]
-// #     )
-
-// #     # Add system and user messages to the prompt
-// #     messages = [
-// #         {
-// #             "role": "system",
-// #             "content": "You are a helpful assistant that creates Flashcards",
-// #         },
-// #         {"role": "user", "content": prompt},
-// #     ]
-
-// #     # Add assistant messages for each keyword
-// #     for keyword in keywordArray:
-// #         messages.append({"role": "assistant", "content": f"Define {keyword}"})
-
-// #     # Make a single API call
-// #     response = openai.ChatCompletion.create(
-// #         model="gpt-3.5-turbo",
-// #         messages=messages,
-// #         max_tokens=1500
-// #         # 1000 tokens gets roughly 50 flashcards
-// #     )
-
-// #     # Extract and print definitions for each keyword
-
-// #     for keyword, choice in zip(keywordArray, response["choices"]):
-// #         definition = choice["message"]["content"]
-// #         f = open("OpenAI.txt", "w")
-// #         f.write(f"{definition}")
-// #         print("Output written in OpenAI.txt")
-// #         f.close()

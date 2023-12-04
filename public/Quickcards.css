@@ -3,7 +3,8 @@
     left: 0;
     background-color: #bfc1c3;
     color: #32424B;
-    font-family: 'Monomaniac One', sans-serif;}
+    font-family: 'Monomaniac One', sans-serif;
+}
 
 .title {
     margin-top: 20px;
@@ -12,6 +13,10 @@
     text-align: center;
     font-size: 130px;
     text-decoration: underline;
+}
+
+main {
+    height: 100vh;
 }
 
 .description {
@@ -32,31 +37,80 @@ form {
 
 #userInput {
     width: 40%;;
-    height: 40px;
+    height: 80px;
     text-align: center;
     background-color: rgb(230, 230, 230);
     font-size: 20px;
-    border-radius: 10px;
+    border-radius: 15px;
+    font-size: 25px;
 }
+
+
+
+
 
 /* Use these to modify flashcard appearnace */
-/* .flashwrapper {
+.flashwrapper {
     justify-content: center;
+    text-align: center;
     align-items: center;
     display: inline-flex;
-    flex-direction: row;
     width: 100%;
+    
 }
 
-#flashcards {
-    border: 2px solid #32424B;
-    border-radius: 20px;
-    background-color: rgb(230, 230, 230);
-    width: 60%;
 
+#flashcards {
+    width: 45%;
     padding: 15px;
     margin-top: 50px;
-
     font-size: 32px;
-} */
+    
+    
+}
 
+.card {
+    border: 3px solid #32424B;
+    margin-top: 30px;
+    border-radius: 25px;
+    background-color: rgb(230, 230, 230);
+    width: auto;
+    height: 135px;
+}
+
+.card > h4{
+    background-color: rgb(230, 230, 230);
+    border-radius: 25px;
+}
+
+.card > p {
+    background-color: rgb(230, 230, 230);
+    border-radius: 25px;
+    font-size: 23px;
+    text-align: center;
+    padding: 15px;
+}
+
+
+
+
+
+@media  screen and (max-width: 800px) {
+   .title {
+    font-size: 70px;
+   }
+
+   #inputLabel {
+    font-size: 30px;
+   }
+
+   #userInput {
+    height: 47px;
+    width: 50%;
+   }
+
+   .card > p {
+    font-size: 15px;
+    height: auto;
+   }
+}

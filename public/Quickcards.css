@@ -47,14 +47,19 @@ form {
 
 
 
-
+#alertMsg {
+    margin-top: 30px;
+    text-align: center;
+    font-size: 40px;
+}
 
 /* Use these to modify flashcard appearnace */
 .flashwrapper {
     justify-content: center;
     text-align: center;
     align-items: center;
-    display: inline-flex;
+    display: flex;
+    flex-direction: column;
     width: 100%;
     
 }
@@ -86,7 +91,7 @@ form {
 .card > p {
     background-color: rgb(230, 230, 230);
     border-radius: 25px;
-    font-size: 23px;
+    font-size: 27px;
     text-align: center;
     padding: 15px;
 }

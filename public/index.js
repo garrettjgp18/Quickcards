@@ -1,14 +1,14 @@
 document.addEventListener("DOMContentLoaded", function() {
 
     // Put your key here
-const YOUR_TOKEN = 'YOUR_KEY_HERE';
+    const YOUR_TOKEN = 'YOUR_KEY_HERE';
 
     // Track submission of TextField
     document.getElementById('userForm').addEventListener('submit', async function(e) {
         e.preventDefault();
 
 
-        // document.getElementById('alertMsg').innerHTML = "Generating flashcards. This may take a moment";
+        document.getElementById('alertMsg').innerHTML = "Generating flashcards. This may take a moment";
 
 
         // Sets videoURL to the input from the HTML field once the 'Enter' key is pressed
@@ -68,7 +68,7 @@ const YOUR_TOKEN = 'YOUR_KEY_HERE';
                     console.log(keyword);
                     console.log(definition);
                     generateFlashcards(keyword, definition);
-                    // document.getElementById('alertMsg').style.display = 'none';
+                    document.getElementById('alertMsg').style.display = 'none';
                 }
 
 

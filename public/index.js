@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function() {
 
     // Put your key here
-    const YOUR_TOKEN = 'YOUR_KEY_HERE';
+    const YOUR_TOKEN = 'YOUR_TOKEN_HERE';
 
     // Set EventListener to run once user hits "Enter" while typing input in text field.
     document.getElementById('userForm').addEventListener('submit', async function(e) {
@@ -26,6 +26,7 @@ document.addEventListener("DOMContentLoaded", function() {
             // Holds modification to API key so it can authenticate (OpenAI requires it to be formatted this way)
             var bearer = 'Bearer ' + YOUR_TOKEN
             // Uses Fetch, along with params needed to use OpenAI api
+
             fetch(url, {
                 // We want to send and recieve data, so we use POST
                 method: 'POST',
@@ -82,12 +83,12 @@ document.addEventListener("DOMContentLoaded", function() {
             }).catch(error => {
                 console.log('An Error Occured: ' + error);
                 // Clear current message 
-                document.getElementById('alertMsg').style.display = 'none';
+                document.getElementById('alertMsg').innerHTML = '';
                 // Display error message to user incase of any errors
-                document.getElementById('alertMsg').innerHTML = "Seems like there was an error. Please refresh the page and try again.";
+                document.getElementById('alertMsg').innerHTML = "An error occured - did you provide an OpenAI key?";
 
             });
-        }
+    }
 
         // Called by loop (line 69) for each keyword / definiton made by OpenAI.
         function generateFlashcards(keyword, definition) {

@@ -121,9 +121,13 @@ form {
     height: 47px;
     width: 50%;
    }
+   
+   #flashcards {
+    width: 75%;
+   }
 
    .card > p {
-    font-size: 15px;
+    font-size: 18px;
     height: auto;
    }
 

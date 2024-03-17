@@ -1,5 +1,5 @@
 # Quickcards
-Quickcards is an ongoing project that levredges OpenAI to dynamically create flashcards when given a keyword. 
+Quickcards is an ongoing project that levredges OpenAI to dynamically create tailored flashcards when given a topic. 
 
 # Team Members
 - Garrett Penton (gpenton)
